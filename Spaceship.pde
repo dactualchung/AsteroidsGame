@@ -70,7 +70,7 @@ class Spaceship extends Floater
     if(keyz[0] == true){
       fill(255,0,0);
       rotate(3*PI/2);
-      text("🔥" , -7,-5);
+      text("🔥" , -7,-4.5);
       rotate(-3*PI/2);
       fill(255,255,255);
     }
