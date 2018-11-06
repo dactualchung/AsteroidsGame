@@ -67,18 +67,20 @@ class Spaceship extends Floater
     rotate(dRadians);
 
     //draw the polygon
+    if(keyz[0] == true){
+      fill(255,0,0);
+      rotate(3*PI/2);
+      text("🔥" , -7,-5);
+      rotate(-3*PI/2);
+      fill(255,255,255);
+    }
     beginShape();
     for (int nI = 0; nI < corners; nI++)
     {
       vertex(xCorners[nI], yCorners[nI]);
     }
     endShape(CLOSE);
-    if(keyz[0] == true){
-      fill(255,0,0);
-      rotate(3*PI/2);
-      text("🔥" , -7,-5);
-      rotate(-3*PI/2);
-    }
+    
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
