@@ -26,12 +26,6 @@ class Spaceship extends Floater
   public void move ()   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY  
-    if(keyz[0] == false && keyz[2] == false){
-      if(myDirectionX >-0.05 && myDirectionX <0.05)
-        myDirectionX = 0;
-      if(myDirectionY >-0.05 && myDirectionY <0.05)
-        myDirectionY = 0;
-    }
     myCenterX += myDirectionX;    
     myCenterY += myDirectionY; 
     //wrap around screen    

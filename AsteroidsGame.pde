@@ -1,4 +1,5 @@
 Spaceship space;
+Asteroid rockz[] = new Asteroid[10];
 boolean keyz[] = new boolean[4];
 Star starz[] = new Star[100];
 public void setup() 
@@ -8,15 +9,22 @@ public void setup()
   for (int i = 0; i < starz.length; i++){
     starz[i] = new Star();
   }
+  for (int i = 0; i < rockz.length; i++){
+    rockz[i] = new Asteroid();
+  }
 }
 public void draw() 
 {
   background(0);
-  space.show();
-  space.move();
   for (int i = 0; i < starz.length; i++){
     starz[i].show();
   }
+  for (int i = 0; i < rockz.length; i++){
+    rockz[i].show();
+    rockz[i].move();
+  }
+  space.show();
+  space.move();
   for (int i = 0; i < keyz.length; i++) {
     if (keyz[0]){
       space.accelerate(0.0125);
