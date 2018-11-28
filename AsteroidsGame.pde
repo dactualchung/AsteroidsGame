@@ -1,5 +1,5 @@
 Spaceship space;
-Asteroid rockz[] = new Asteroid[10];
+ArrayList <Asteroid> rockz = new ArrayList <Asteroid>();
 boolean keyz[] = new boolean[4];
 Star starz[] = new Star[100];
 public void setup() 
@@ -9,8 +9,8 @@ public void setup()
   for (int i = 0; i < starz.length; i++){
     starz[i] = new Star();
   }
-  for (int i = 0; i < rockz.length; i++){
-    rockz[i] = new Asteroid();
+  for (int i = 0; i < 15; i++){
+    rockz.add(new Asteroid());
   }
 }
 public void draw() 
@@ -19,9 +19,12 @@ public void draw()
   for (int i = 0; i < starz.length; i++){
     starz[i].show();
   }
-  for (int i = 0; i < rockz.length; i++){
-    rockz[i].show();
-    rockz[i].move();
+  for (int i = 0; i < rockz.size(); i++){
+    rockz.get(i).show();
+    rockz.get(i).move();
+    float d = dist(space.getX(),space.getY(), rockz.get(i).getX(), rockz.get(i).getY());
+    if(d < 12)
+      rockz.remove(i);
   }
   space.show();
   space.move();
