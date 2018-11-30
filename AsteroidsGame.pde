@@ -33,6 +33,8 @@ public void draw()
       rockz.remove(i);
       i--;
     }
+  }
+  for (int i = 0; i < rockz.size(); i++){
     for(int a = 0; a < bullz.size(); a++){
       float b = dist(bullz.get(a).getX(),bullz.get(a).getY(), rockz.get(i).getX(), rockz.get(i).getY());
       if(b < 10){
@@ -57,7 +59,7 @@ public void draw()
     if (keyz[3]){
       space.turn(0.7);
     }
-    if (keyz[4]){
+    if (keyz[4] && bulletShot == false){
       bullz.add(new Bullet(space));
       bulletShot = true; 
     }
@@ -83,7 +85,7 @@ public void keyPressed() {
     space.setDirectionY(0);
     space.setPointDirection((int)(Math.random()*256));
   }
-  if ((key == ' ' /*&& bulletShot == false*/) || (key == ' ' /*&& bulletShot == false*/)){
+  if ((key == ' ' && bulletShot == false) || (key == ' ' && bulletShot == false)){
     keyz[4] = true;
   }
 }

@@ -25,7 +25,7 @@ class Bullet extends Floater
     stroke(myColor);
     ellipse((float)myCenterX, (float)myCenterY, 5, 5);
   }
-  /*public void move ()   //move the floater in the current direction of travel
+  public void move ()   //move the floater in the current direction of travel
   {
     //change the x and y coordinates by myDirectionX and myDirectionY
     myCenterX += myDirectionX;
@@ -41,5 +41,5 @@ class Bullet extends Floater
     } else if (myCenterY < 0) {
       bullz.remove(this);
     }
-  }*/
+  }
 }
