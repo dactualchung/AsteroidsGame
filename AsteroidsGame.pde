@@ -1,7 +1,9 @@
 Spaceship space;
 ArrayList <Asteroid> rockz = new ArrayList <Asteroid>();
-boolean keyz[] = new boolean[4];
+boolean keyz[] = new boolean[5];
 Star starz[] = new Star[100];
+ArrayList <Bullet> bullz = new ArrayList <Bullet>();
+boolean bulletShot = false;
 public void setup() 
 {
   size(500, 500);
@@ -9,7 +11,7 @@ public void setup()
   for (int i = 0; i < starz.length; i++){
     starz[i] = new Star();
   }
-  for (int i = 0; i < 15; i++){
+  for (int i = 0; i < 30; i++){
     rockz.add(new Asteroid());
   }
 }
@@ -19,12 +21,26 @@ public void draw()
   for (int i = 0; i < starz.length; i++){
     starz[i].show();
   }
+  for (int i = 0; i < bullz.size(); i++){
+    bullz.get(i).show();
+    bullz.get(i).move();
+  }
   for (int i = 0; i < rockz.size(); i++){
     rockz.get(i).show();
     rockz.get(i).move();
     float d = dist(space.getX(),space.getY(), rockz.get(i).getX(), rockz.get(i).getY());
-    if(d < 12)
+    if(d < 12){
       rockz.remove(i);
+      i--;
+    }
+    for(int a = 0; a < bullz.size(); a++){
+      float b = dist(bullz.get(a).getX(),bullz.get(a).getY(), rockz.get(i).getX(), rockz.get(i).getY());
+      if(b < 10){
+        rockz.remove(i);
+        bullz.remove(a);
+        break;
+      }
+    }
   }
   space.show();
   space.move();
@@ -40,6 +56,10 @@ public void draw()
     }
     if (keyz[3]){
       space.turn(0.7);
+    }
+    if (keyz[4]){
+      bullz.add(new Bullet(space));
+      bulletShot = true; 
     }
   }
 }
@@ -63,6 +83,9 @@ public void keyPressed() {
     space.setDirectionY(0);
     space.setPointDirection((int)(Math.random()*256));
   }
+  if ((key == ' ' /*&& bulletShot == false*/) || (key == ' ' /*&& bulletShot == false*/)){
+    keyz[4] = true;
+  }
 }
 public void keyReleased() {
   if (key == 'w' || key == 'W') {
@@ -77,5 +100,8 @@ public void keyReleased() {
   if (key == 'd' || key == 'D') {
     keyz[3] = false;
   }
-  
+  if (key == ' ' || key == ' ') {
+    keyz[4] = false;
+    bulletShot = false;
+  }
 }
